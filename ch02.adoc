@@ -99,6 +99,7 @@ This convention does not standardize variable names.
 
 NetCDF variables that contain coordinate data are referred to as __coordinate variables__, __auxiliary coordinate variables__, __scalar coordinate variables__, or __multidimensional coordinate variables__.
 
+CF datasets that provide localized (i.e. multilingual) versions of variables will follow the standard pattern for such variables in Chapter 10.
 
 
 
@@ -148,6 +149,8 @@ Several string attributes are defined by this standard to contain "blank-separat
 Consecutive words in such a list are separated by one or more adjacent spaces.
 The list may begin and end with any number of spaces.
 See <<attribute-appendix>> for a list of attributes described by this standard.
+
+CF datasets that provide localized (i.e. multilingual) versions of attributes will follow the standard pattern for such attributes in Chapter 10.
 
 
 

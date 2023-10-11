@@ -7,7 +7,7 @@ as a **localized dataset**. This section on localization is limited to natural l
 vocabulary (see Appendix A for recommendations). Non-CF attributes may also be localized.
 
 Attributes and variables within NetCDF datasets may contain **natural language text** which is written for a specific locale. 
-A **locale** is defined by a (link:$$https://www.rfc-editor.org/info/bcp47$$[IETF BCP 47 language tag]. The process of translating 
+A **locale** is defined by a link:$$https://www.rfc-editor.org/info/bcp47$$[IETF BCP 47 language tag]. The process of translating 
 these into other locales is called localization. CF datasets distinguish between versions of an attribute in different locales using
 a **locale suffix**. All values of natural language text attributes and variables MUST be provided in UTF-8.
 

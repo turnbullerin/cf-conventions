@@ -11,7 +11,7 @@ A **locale** is defined by a link:$$https://www.rfc-editor.org/info/bcp47$$[IETF
 these into other locales is called localization. CF datasets distinguish between versions of an attribute in different locales using
 a **locale suffix**. All values of natural language text attributes and variables MUST be provided in UTF-8.
 
-A localized dataset MUST define a global attribute `1ocale_default` containing a single BCP 47 language tag.
+A localized dataset MUST define a global attribute `locale_default` containing a single BCP 47 language tag.
 
 If the dataset contains more than one locale, it MUST also define a global attribute `locale_others`. This attribute contains a
 space-delimited map of suffixes to BCP 47 language tags. The suffixes are optional and, if not specified, default to a period followed by 

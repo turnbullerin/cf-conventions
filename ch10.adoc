@@ -58,7 +58,7 @@ float rh(lon, lat) ;
     // units and standard_name come from a controlled vocabulary, so they are not translated
     rh:units = "0.01";
     rh:standard_name = "relative_humidity";
-	// long_name can be translated
+    // long_name can be translated
     rh:long_name = "Relative Humidity";
     rh:long_name.fr = "Humidité relative";
     rh:long_name.es = "Humedad relativa";

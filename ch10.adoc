@@ -40,7 +40,7 @@ The following example illustrates the standard way to provide an English, French
 
 [[localized-text-ex]]
 [caption="Example 10.1. "]
-.Localization of `long_name` and `title`**
+.Localization of `long_name` and `title`
 ====
 
 ----

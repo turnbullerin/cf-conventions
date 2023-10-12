@@ -4,27 +4,26 @@
  
 This chapter provides a standard methodology for the OPTIONAL **localization** of a CF dataset. 
 Such a dataset is referred to as a **localized dataset**. 
-This section on localization is limited to natural language text which is not standardized (see Appendix A for recommendations). 
+This section on localization is limited to natural language text which is not standardized (see Appendix A for recommendations).
+All values of natural language text attributes and variables MUST be provided in UTF-8.
 Attributes and variables whose values are numeric or come from a standardized list (e.g. `standard_name`) SHOULD NOT be localized.
-Non-standard CF attributes may also be localized.
+Non-standard CF attributes MAY also be localized.
 
 Attributes and variables within NetCDF datasets may contain **natural language text** which is written for a specific locale. 
 A **locale** is defined by a link:$$https://www.rfc-editor.org/info/bcp47$$[IETF BCP 47 language tag]. 
 The process of translating these into other locales is called localization. 
 CF datasets distinguish between versions of an attribute in different locales using a **locale suffix**. 
-All values of natural language text attributes and variables MUST be provided in UTF-8.
 
 A localized dataset MUST define a global attribute `locale_default` containing a single BCP 47 language tag.
 For non-localized datasets, natural language attributes and variables SHOULD be provided in English.
 
 If the dataset contains more than one locale, it MUST also define a global attribute `locale_others`. 
-This attribute contains a space-delimited map of suffixes to BCP 47 language tags. 
-The suffixes are optional and, if not specified, default to a period followed by the locale (i.e. `.LOCALE`). 
-If provided, they should be followed by a colon, a space, and then the BCP 47 language tag. 
-Spaces and colons MAY NOT be used in suffixes or language tags.
+This attribute contains a space-delimited map of suffixes to BCP 47 language tags in the format `[suffix1: ]tag1 [suffix2: ]tag2 ... [suffixN: ]tagN`. 
+Spaces and colons MUST NOT be used in suffixes or language tags.
+The suffix portion is OPTIONAL. If omitted, the suffix is a period followed by the tag (i.e. `.tagN`).
 
-For example, given `locale_others = "fr es"`, the localized versions of the `title` attribute will be in `title.fr` and `title.es`. 
-If instead given `locale_others = "_fr: fr _es: es"`, then the localized versions will be in `title_fr` and `title_es`. 
+For example, given `locale_others = "fr-CA es"`, the localized versions of the `title` attribute will be in `title.fr-CA` and `title.es`. 
+If instead given `locale_others = "_fr: fr-CA _es: es"`, then the localized versions will be in `title_fr` and `title_es`. 
 It is RECOMMENDED that datasets use the default and omit the suffixes unless there are compatibility issues with using periods and hyphens in attribute or variable names. 
 
 All attributes and variables without a language suffix in a localized dataset MUST be either (a) numeric, (b) from a controlled vocabulary, or (c) text in the locale defined by `locale_default`. 
@@ -33,11 +32,16 @@ Providing localized attributes or variables is OPTIONAL.
 A localized dataset is not required to provide a translated version of every natural language attribute and variable.
 
 Tools which understand and process localized data properly are referred to as **internationalized** tools. 
-Internationalized tools should follow BCP 47 to determine which locale to display to a user and how to handle cases where the attribute or variable is not available in a suitable locale. 
-Internationalized tools may also apply localization for numbers or translating controlled vocabulary terms, but the mechanisms of doing so are outside of the scope of the CF Conventions.
-If the `locale_default` attribute is missing, internationalized applications may assume a default of `en`.
+Internationalized tools SHOULD follow BCP 47 to determine which locale to display to a user and how to handle cases where the attribute or variable is not available in a suitable locale. 
+Internationalized tools MAY also apply localization for numbers or translating controlled vocabulary terms, but the mechanisms of doing so are outside of the scope of the CF Conventions.
+If the `locale_default` attribute is missing, internationalized applications SHOULD assume a default of `en`.
 
-As an example, the following dataset illustrates the standard way to provide an English, French, and Spanish title and long name for a variable.
+The following example illustrates the standard way to provide an English, French, and Spanish title and long name for a variable.
+
+[[localized-text-ex]]
+[caption="Example 10.1. "]
+.Localization of `long_name` and `title`**
+====
 
 ----
 
@@ -61,3 +65,4 @@ float rh(lon, lat) ;
 
 ----
 
+====

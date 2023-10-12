@@ -37,7 +37,7 @@ As an example, the following dataset provides an English, French, and Spanish ti
 :locale_default = "en";
 :locale_others = "fr es";
 :title = "English Title";
-:title.fr = "Titre française";
+:title.fr = "Titre français";
 :title.es = "Título en español";
 ----
 

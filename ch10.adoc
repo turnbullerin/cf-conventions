@@ -4,37 +4,44 @@
  
 This chapter provides a standard methodology for the OPTIONAL **localization** of a CF dataset. 
 Such a dataset is referred to as a **localized dataset**. 
-This section on localization is limited to natural language text which is not standardized (see Appendix A for recommendations).
+This section on localization is limited to **natural language text** which is not standardized (see Appendix A for recommendations).
+Natural language text only has meaning in the context of a specific human language.
+Text which is not specific to a language (such as unique identifiers), numbers, and text which comes from a controlled list of values SHOULD NOT be localized.
 All values of natural language text attributes and variables MUST be provided in UTF-8.
-Attributes and variables whose values are numeric or come from a standardized list (e.g. `standard_name`) SHOULD NOT be localized.
 Non-standard CF attributes MAY also be localized.
 
-Attributes and variables within NetCDF datasets may contain **natural language text** which is written for a specific locale. 
 A **locale** is defined by a link:$$https://www.rfc-editor.org/info/bcp47$$[IETF BCP 47 language tag]. 
-The process of translating these into other locales is called localization. 
 CF datasets distinguish between versions of an attribute in different locales using a **locale suffix**. 
-
-A localized dataset MUST define a global attribute `locale_default` containing a single BCP 47 language tag.
 For non-localized datasets, natural language attributes and variables SHOULD be provided in English.
 
+A localized dataset MUST define a global attribute `locale_default` containing a single BCP 47 language tag.
+This language tag applies to the content of attributes and variables without a locale suffix.
+For example, given `locale_default = "fr"`, the `title` attribute should then be provided in French.
+
 If the dataset contains more than one locale, it MUST also define a global attribute `locale_others`. 
-This attribute contains a space-delimited map of suffixes to BCP 47 language tags in the format `[suffix1: ]tag1 [suffix2: ]tag2 ... [suffixN: ]tagN`. 
-Spaces and colons MUST NOT be used in suffixes or language tags.
+This attribute contains a space-delimited map of locale suffixes to BCP 47 language tags in the format `[suffix1: ]tag1 [suffix2: ]tag2 ... [suffixN: ]tagN`. 
+Spaces and colons MUST NOT be used in locale suffixes or BCP 47 language tags.
 The suffix portion is OPTIONAL. If omitted, the suffix is a period followed by the tag (i.e. `.tagN`).
 
 For example, given `locale_others = "fr-CA es"`, the localized versions of the `title` attribute will be in `title.fr-CA` and `title.es`. 
 If instead given `locale_others = "_fr: fr-CA _es: es"`, then the localized versions will be in `title_fr` and `title_es`. 
 It is RECOMMENDED that datasets use the default and omit the suffixes unless there are compatibility issues with using periods and hyphens in attribute or variable names. 
 
-All attributes and variables without a language suffix in a localized dataset MUST be either (a) numeric, (b) from a controlled vocabulary, or (c) text in the locale defined by `locale_default`. 
+All attributes and variables without a language suffix in a localized dataset MUST be either (a) numeric, (b) from a controlled vocabulary, (c) non-natural language text (e.g. UUIDs), or (d) text in the locale defined by `locale_default`. 
 All attributes and variables with a language suffix MUST be text in the locale defined for that suffix in `locale_others`. 
 Providing localized attributes or variables is OPTIONAL.
 A localized dataset is not required to provide a translated version of every natural language attribute and variable.
 
-Tools which understand and process localized data properly are referred to as **internationalized** tools. 
+Tools which understand and process localized data properly are referred to as **internationalized tools**. 
 Internationalized tools SHOULD follow BCP 47 to determine which locale to display to a user and how to handle cases where the attribute or variable is not available in a suitable locale. 
+If a suitable match to a requested language cannot be found, the attribute or variable without a locale suffix SHOULD be used.
 Internationalized tools MAY also apply localization for numbers or translating controlled vocabulary terms, but the mechanisms of doing so are outside of the scope of the CF Conventions.
 If the `locale_default` attribute is missing, internationalized applications SHOULD assume a default of `en`.
+
+In selecting BCP 47 language tags, data producers SHOULD omit subtags where they do not add useful distinguishing information.
+Extraneous subtags interfere with the meaning, understanding, and processing of language tags.
+For example, if the text is provided in English and is equally clear in all dialects of English, then it should be identified as `en` instead of `en-US` or `en-CA`.
+A list of link:$$https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry$$[IETF language tags and sub-tags] is available from the IANA.
 
 The following example illustrates the standard way to provide an English, French, and Spanish title and long name for a variable.
 

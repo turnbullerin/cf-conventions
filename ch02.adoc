@@ -65,7 +65,9 @@ Attribute names and their contents, where standardized, are given in English in 
 Languages other than English are permitted for variables, dimensions, and non-standardized attributes.
 The content of some standardized attributes are string values that are not standardized, and thus are not required to be in English.
 For example, a description of what a variable represents may be given in a non-English language using the **`long_name`** attribute (see <<long-name>>) whose contents are not standardized, but a description given by the **`standard_name`** attribute (see <<standard-name>>) must be taken from the standard name table which is in English.
-
+The language used in attributes whose contents are not standardized should be consistent.
+If the language used is not English, it must be identified in the `locale_default` attribute, as per Chapter 10. 
+If more than one language is desired, Chapter 10 outlines how to localize attributes.
 
 
 

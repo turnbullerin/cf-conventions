@@ -6,11 +6,11 @@ This chapter provides a standard methodology for the OPTIONAL **localization** o
 Such a dataset is referred to as a **localized dataset**. 
 This section on localization is limited to **natural language text** which is not standardized (see Appendix A for recommendations).
 Natural language text only has meaning in the context of a specific human language.
-Text which is not specific to a language (such as unique identifiers), numbers, and text which comes from a controlled list of values SHOULD NOT be localized.
-All values of natural language text attributes and variables MUST be provided in UTF-8.
+Text which is not specific to a language (such as identification strings), numbers, and text which comes from a controlled list of values SHOULD NOT be localized.
+All values of natural language text attributes and variables MUST be provided in ASCII or UTF-8.
 Non-standard CF attributes MAY also be localized.
 
-A **locale** is defined by a link:$$https://www.rfc-editor.org/info/bcp47$$[IETF BCP 47 language tag]. 
+A **locale** is defined by an **IETF BCP 47 language tag** (link:$$https://en.wikipedia.org/wiki/IETF_language_tag$$[Wikipedia], link:$$https://www.rfc-editor.org/info/bcp47$$[BCP 47]). 
 CF datasets distinguish between versions of an attribute in different locales using a **locale suffix**. 
 For non-localized datasets, natural language attributes and variables SHOULD be provided in English.
 
